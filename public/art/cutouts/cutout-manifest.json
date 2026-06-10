@@ -1,0 +1,6 @@
+{
+  "usage": "No P0 cutout assets. PactBreak is an operational-dashboard product and uses SVG brand assets plus UI-rendered proof surfaces.",
+  "raw": [],
+  "cutouts": [],
+  "qa": "If future deck or hero foreground art is generated, use the cutout_assets.mjs workflow before shipping."
+}

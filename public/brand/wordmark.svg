@@ -1,0 +1,16 @@
+<svg width="330" height="72" viewBox="0 0 330 72" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">PactBreak wordmark</title>
+  <g transform="translate(4 4) scale(0.6667)">
+    <rect x="8" y="8" width="80" height="80" rx="22" fill="#071521"/>
+    <path d="M22 25h36c9 0 16 7 16 16v14c0 9-7 16-16 16H22V25Z" fill="#0C2230" stroke="#2AF3FF" stroke-width="3"/>
+    <path d="M24 38h23l7 10h20" stroke="#E9FFF8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24 60h19l9-12" stroke="#E9FFF8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M62 30v36" stroke="#6CFF8F" stroke-width="6" stroke-linecap="round"/>
+    <path d="M52 37l9 9 17-21" stroke="#6CFF8F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M52 69l27-27" stroke="#FF4D5D" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="23" cy="38" r="4" fill="#FF4D5D"/>
+    <circle cx="75" cy="48" r="4" fill="#6CFF8F"/>
+  </g>
+  <text x="78" y="34" fill="#E9FFF8" font-family="Geist, Satoshi, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="26" font-weight="800" letter-spacing="0">PactBreak</text>
+  <text x="80" y="52" fill="#9ABAC4" font-family="SFMono-Regular, Cascadia Code, Roboto Mono, ui-monospace, monospace" font-size="8.5" font-weight="700" letter-spacing="1.2">RESOURCE PROCUREMENT</text>
+</svg>

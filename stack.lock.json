@@ -1,0 +1,203 @@
+{
+  "$schema": "https://hackathonhunter.example.com/schemas/stack.lock.json",
+  "project_language": "en",
+  "branch": "Web3",
+  "delivery_mode": "combined-pitch-demo",
+  "delivery_mode_reason": "Online hackathon submission recommends a 3-5 minute demo video and does not require a separate live-stage pitch.",
+  "video_target_duration_s": 270,
+  "video_resolution": "1920x1200",
+  "video_composer": "hyperframes",
+  "hackathon": {
+    "name": "AI x Web3 Agentic Builders Hackathon",
+    "url": "https://casualhackathon.com/hackathons/ai-web3-agentic-builders-hackathon",
+    "deadline": "2026-06-13T12:00:00+08:00"
+  },
+  "frontend": {
+    "framework": "next@latest",
+    "styling": "tailwind@latest plus custom CSS tokens",
+    "dependency_policy": "frontend deps install with @latest/unversioned targets unless an override_reason is recorded",
+    "visual_style_lane": "operational-dashboard",
+    "primary_ui_library": "shadcn/ui + Radix primitives",
+    "supporting_ui_library": "lucide-react, cmdk",
+    "non_tailwind_visual_signature": "agent procurement command surface with quote table, CAW boundary divider, stamped status labels, proof packet drawer, monospace evidence fields, and decision rails",
+    "component_blocks": ["ProcurementConsole", "VendorQuoteTable", "AgentDecisionLog", "MutationControls", "PactConsole", "ProofBoard", "EvidenceImport", "RunTimeline", "PolicyLab"],
+    "hero_composition": "left hero claim and CTA with right-side procurement proof slab, allowed tx hash, blocked status, and proof chips",
+    "visual_differentiation_note": "agent resource procurement workbench instead of generic DeFi terminal or wallet dashboard",
+    "forbidden_lookalikes": ["AI chat window", "wallet balance dashboard", "portfolio terminal", "Dune analytics board", "APY cards"],
+    "qr_mobile_access": {
+      "entry": "QR code opens /app/queue?demo=judge",
+      "mobile_primary_flow": "stacked procurement cards, quote rows, quick attack buttons, full-screen proof drawer",
+      "desktop_parity_plan": "wide quote table, side proof panel, keyboard-editable fields, command palette",
+      "viewports_to_test": ["390x844", "1920x1200"]
+    },
+    "asset_sources": {
+      "logo": "logo-generator or project-owned SVG wordmark in public/brand",
+      "avatars": "not used for P0",
+      "generated_images": ["docs/ui-mockups/01-hero-frame.png", "docs/ui-mockups/02-app-frame.png", "docs/ui-mockups/03-mobile-first-run.png"],
+      "cutout_assets": {
+        "raw_dirs": [],
+        "output_dirs": [],
+        "command": "not used for P0 operational dashboard"
+      }
+    },
+    "motion": ["state feedback transitions", "proof drawer reveal", "reduced-motion fallback"]
+  },
+  "web3": {
+    "chain": "CAW-configured SETH demo chain",
+    "winnerThesis": {
+      "trackProblem": "agent resource procurement needs enforceable payment boundaries before signature",
+      "winnerPattern": "workflow-compression",
+      "winnerFamily": "settlement-escrow",
+      "chainPrimitive": "Cobo Agentic Wallet Pact-scoped fund operation and audit trail",
+      "userAction": "judge mutates an agent procurement order by changing price or vendor wallet",
+      "proofSurface": "selected vendor, Pact ID, Agent Wallet address, tx hash, denial record, audit log",
+      "genericCloneToAvoid": "wallet dashboard or balance chatbot"
+    },
+    "contractsFramework": "none for P0; CAW SDK handles wallet operation",
+    "walletLibs": ["@cobo/agentic-wallet"],
+    "envBakedDemo": false,
+    "demoWalletPlacement": "procurement console, CAW Pact console, and proof board",
+    "demoWalletStatus": ["wallet id", "pact status", "scoped key present", "tx hash or denial"],
+    "demoRoles": ["judge", "RiskOps Agent", "treasury operator"]
+  },
+  "deploy": {
+    "frontend": "cloudflare-workers",
+    "backend": "cloudflare-workers",
+    "adapter": "@opennextjs/cloudflare",
+    "bindings": {
+      "d1": ["PactBreak runs and evidence"],
+      "kv": [],
+      "r2": [],
+      "queues": []
+    },
+    "contracts": "none for P0; CAW operation evidence is required",
+    "production_url": "https://pactbreak-treasury-firewall.veithly.workers.dev",
+    "smoke_tested_at": "2026-06-10T05:51:30+08:00",
+    "cloudflare_override_reason": ""
+  },
+  "required_env": [
+    {
+      "name": "AGENT_WALLET_API_URL",
+      "scope": "server",
+      "required_for": "CAW Pact, transfer, and audit API calls",
+      "official_key_url": "https://www.cobo.com/products/agentic-wallet/manual/developer/quickstart-overview",
+      "storage": ".env.local locally; Wrangler secret/dashboard variable for deployed runtime",
+      "status": "configured-local"
+    },
+    {
+      "name": "AGENT_WALLET_API_KEY",
+      "scope": "server",
+      "required_for": "CAW owner/Pact API authentication",
+      "official_key_url": "https://www.cobo.com/products/agentic-wallet/manual/developer/quickstart-overview",
+      "storage": ".env.local locally; Wrangler secret for deployment",
+      "status": "configured-local-secret"
+    },
+    {
+      "name": "AGENT_WALLET_WALLET_ID",
+      "scope": "server",
+      "required_for": "CAW wallet operations",
+      "official_key_url": "https://www.cobo.com/products/agentic-wallet/manual/developer/quickstart-overview",
+      "storage": ".env.local locally; Wrangler secret/dashboard variable for deployment",
+      "status": "configured-local"
+    },
+    {
+      "name": "CAW_SOURCE_ADDRESS",
+      "scope": "server",
+      "required_for": "CAW transfer source address; current CAW API requires body.src_addr for token transfers",
+      "official_key_url": "https://www.cobo.com/products/agentic-wallet/manual/developer/cli",
+      "storage": ".env.local locally; Wrangler variable for deployment",
+      "status": "configured-local"
+    },
+    {
+      "name": "CAW_DESTINATION",
+      "scope": "server",
+      "required_for": "safe vendor transfer destination",
+      "official_key_url": "https://www.cobo.com/products/agentic-wallet/manual/developer/quickstart-overview",
+      "storage": ".env.local",
+      "optional": true,
+      "status": "optional"
+    },
+    {
+      "name": "PRIVATE_KEY",
+      "scope": "server",
+      "required_for": "not required by this CAW build; Cobo Agentic Wallet owns signing through Pact-scoped API credentials",
+      "official_key_url": "https://www.cobo.com/products/agentic-wallet/manual/developer/quickstart-overview",
+      "storage": "not stored",
+      "optional": true,
+      "status": "not-required",
+      "alias_of": "not used; CAW manages transaction authorization"
+    }
+  ],
+  "real_data_sources": [
+    {
+      "id": "run-store",
+      "type": "database",
+      "source": "persistent local JSON database with Cloudflare D1 deployment target",
+      "evidence": "run ID and timeline survives refresh"
+    },
+    {
+      "id": "caw-operation",
+      "type": "chain",
+      "source": "Cobo Agentic Wallet SDK/API",
+      "evidence": "Pact ID, wallet ID/address, tx hash, denial record, audit log"
+    },
+    {
+      "id": "operator-evidence-import",
+      "type": "user-upload",
+      "source": "operator-attested real CAW wallet receipt imported by user-upload form",
+      "evidence": "raw evidence hash and operator_attested_imported label"
+    }
+  ],
+  "sponsor_technology": [
+    {
+      "name": "Cobo Agentic Wallet",
+      "primitive": "CAW Pact, scoped API key, transferTokens, audit log",
+      "reviewer_visible_use": "RiskOps Agent selects a vendor quote, then CAW constrains the payment by chain, token, destination, and amount. Mutated price or vendor wallet becomes a blocked proof event.",
+      "proof": "Pact 59f67ec0-8b3c-4d26-9403-0f70f083e3ec, tx 0xae5e23759f56182d286a89ef55161e5e6af517e963e1f83a6e37d14f30c3e0ea, denial ADDRESS_NOT_WHITELISTED, audit allowed=19 denied=1",
+      "depth": "core mechanism"
+    }
+  ],
+  "product_backbone": {
+    "identity": "guest session with judge/operator modes",
+    "storage": "persistent local JSON database, SQLite-style run file, D1 target",
+    "ownership_fields": ["ownerId", "agentId", "runId", "walletId", "selectedQuoteId", "evidenceSource"],
+    "second_context_proof": "run detail and proof board show persisted state after refresh"
+  },
+  "feature_density": {
+    "interactive_surfaces": ["/app/queue", "/app/pact", "/app/proof", "/app/runs/[id]", "/app/policy"],
+    "user_case_beats": [
+      {
+        "user_case": "UC-001 HERO PATH",
+        "beat": "Judge attaches existing CAW receipt, then mutates the procurement order amount",
+        "route": "/app/queue",
+        "action_selector": "button:has-text('Raise price above limit')",
+        "state_change": "run status changes to policy_blocked",
+        "backend_evidence": "POST /api/drills action=mutate writes run event"
+      },
+      {
+        "user_case": "UC-002",
+        "beat": "RiskOps Agent selects an approved vendor quote",
+        "route": "/app/queue",
+        "action_selector": "button:has-text('Use quote')",
+        "state_change": "selectedQuoteId changes and quote_selected event persists",
+        "backend_evidence": "POST /api/drills action=select_quote"
+      },
+      {
+        "user_case": "UC-003",
+        "beat": "Operator submits CAW Pact",
+        "route": "/app/pact",
+        "action_selector": "[data-testid='submit-pact-button']",
+        "state_change": "pact status changes to submitted or configuration_blocked",
+        "backend_evidence": "POST /api/drills action=caw_pact"
+      },
+      {
+        "user_case": "UC-004",
+        "beat": "Reviewer imports real evidence when env missing",
+        "route": "/app/proof",
+        "action_selector": "[data-testid='evidence-import-form']",
+        "state_change": "run status changes to evidence_imported",
+        "backend_evidence": "POST /api/drills action=import_evidence"
+      }
+    ]
+  }
+}

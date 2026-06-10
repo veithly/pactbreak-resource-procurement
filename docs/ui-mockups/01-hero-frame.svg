@@ -1,0 +1,17 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#121A21"/>
+  <rect x="72" y="64" width="1456" height="872" rx="24" fill="#1B2730" stroke="#3B4B57" stroke-width="2"/>
+  <text x="120" y="178" fill="#EEF4F2" font-family="Arial" font-size="72" font-weight="700">Try to drain the agent payout.</text>
+  <text x="120" y="254" fill="#EEF4F2" font-family="Arial" font-size="72" font-weight="700">CAW blocks it before signature.</text>
+  <text x="124" y="322" fill="#AAB8BE" font-family="Arial" font-size="28">A judge edits a queued treasury transfer, then inspects Pact, tx, denial, and audit evidence.</text>
+  <rect x="124" y="386" width="260" height="64" rx="10" fill="#6EE7B7"/>
+  <text x="158" y="426" fill="#10251B" font-family="Arial" font-size="24" font-weight="700">Open drill</text>
+  <rect x="860" y="250" width="560" height="420" rx="14" fill="#121A21" stroke="#3B4B57" stroke-width="2"/>
+  <text x="900" y="316" fill="#AAB8BE" font-family="Arial" font-size="22">Treasury queue</text>
+  <rect x="900" y="354" width="480" height="74" rx="10" fill="#1B2730" stroke="#3B4B57"/>
+  <text x="928" y="399" fill="#EEF4F2" font-family="Arial" font-size="24">Vendor payout 0.001 SETH</text>
+  <rect x="900" y="456" width="480" height="74" rx="10" fill="#271718" stroke="#A23A3A"/>
+  <text x="928" y="501" fill="#F87171" font-family="Arial" font-size="24">Judge edit 0.005 SETH</text>
+  <rect x="900" y="558" width="250" height="58" rx="10" fill="#F7C948"/>
+  <text x="928" y="596" fill="#221A08" font-family="Arial" font-size="22" font-weight="700">BLOCKED</text>
+</svg>

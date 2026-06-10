@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pactbreak-treasury-firewall",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-06-09",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "AGENT_WALLET_API_URL": "https://api.agenticwallet.cobo.com",
+    "CAW_CHAIN_ID": "SETH",
+    "CAW_TOKEN_ID": "SETH",
+    "CAW_DESTINATION": "0x1111111111111111111111111111111111111111"
+  }
+}

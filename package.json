@@ -1,0 +1,45 @@
+{
+  "name": "pactbreak-resource-procurement",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Cobo Agentic Wallet resource procurement demo for CAW-bound agent payments.",
+  "scripts": {
+    "dev": "next dev",
+    "dev:demo": "next dev -p 4388",
+    "build": "next build",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:preview": "opennextjs-cloudflare preview",
+    "cf:deploy": "opennextjs-cloudflare deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "playwright test",
+    "test:onboard": "playwright test tests/onboard.spec.ts",
+    "caw:drill": "tsx scripts/run-caw-drill.ts"
+  },
+  "dependencies": {
+    "@cobo/agentic-wallet": "latest",
+    "@gsap/react": "^2.1.2",
+    "@opennextjs/cloudflare": "^1.19.11",
+    "clsx": "latest",
+    "cmdk": "latest",
+    "gsap": "^3.15.0",
+    "lucide-react": "latest",
+    "nanoid": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwind-merge": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "@tailwindcss/postcss": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "playwright": "latest",
+    "tailwindcss": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "wrangler": "^4.98.0"
+  }
+}
