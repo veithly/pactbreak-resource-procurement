@@ -33,6 +33,21 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <section className="architecture-art-grid" aria-label="Generated product material scenes">
+          <figure>
+            <img src="/art/gpt-pro/procurement-desk.png" alt="Generated procurement console scene" />
+            <figcaption>Agent compares vendor quotes before requesting CAW authority.</figcaption>
+          </figure>
+          <figure>
+            <img src="/art/gpt-pro/caw-boundary.png" alt="Generated CAW authorization boundary scene" />
+            <figcaption>CAW keeps the safe transfer path narrower than the agent process.</figcaption>
+          </figure>
+          <figure>
+            <img src="/art/gpt-pro/proof-receipt.png" alt="Generated proof receipt board scene" />
+            <figcaption>The proof board keeps receipts, denial state, and audit timeline visible.</figcaption>
+          </figure>
+        </section>
+
         <Link className="control-button primary min-h-12 min-w-12" href="/app/queue" style={{ marginTop: 18 }}>
           Start procurement
         </Link>

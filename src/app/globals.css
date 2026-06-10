@@ -775,17 +775,15 @@ pre {
 }
 
 .proof-slab {
-  min-height: 520px;
+  min-height: 620px;
   display: grid;
-  align-content: space-between;
-  gap: 22px;
+  align-content: start;
+  gap: 16px;
   padding: clamp(20px, 3vw, 34px);
   border-radius: 16px;
   border: 1px solid oklch(0.68 0.12 205 / 0.72);
   background:
-    linear-gradient(118deg, oklch(0.34 0.072 238 / 0.96), oklch(0.14 0.032 260 / 0.98) 58%),
-    url("/brand/og.png") center / cover;
-  background-blend-mode: normal, luminosity;
+    linear-gradient(118deg, oklch(0.34 0.072 238 / 0.96), oklch(0.14 0.032 260 / 0.98) 58%);
   overflow: hidden;
   position: relative;
 }
@@ -804,6 +802,15 @@ pre {
   position: relative;
 }
 
+.proof-slab-art {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid oklch(0.7 0.1 205 / 0.5);
+  box-shadow: 0 8px 18px oklch(0 0 0 / 0.28);
+}
+
 .proof-slab-top,
 .proof-slab-grid {
   display: flex;
@@ -818,8 +825,9 @@ pre {
 
 .proof-route {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin-top: 84px;
+  margin-top: 2px;
 }
 
 .proof-route span,
@@ -905,6 +913,24 @@ pre {
   border-color: oklch(0.78 0.16 205 / 0.9);
 }
 
+.bento-card.has-media > img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid oklch(0.56 0.09 205 / 0.52);
+  margin-bottom: 14px;
+  filter: contrast(1.08) saturate(1.04);
+  transition:
+    transform 700ms ease,
+    filter 700ms ease;
+}
+
+.bento-card.has-media:hover > img {
+  transform: scale(1.025);
+  filter: contrast(1.14) saturate(1.1);
+}
+
 .bento-card h2,
 .bento-card h3 {
   margin: 12px 0 0;
@@ -963,6 +989,8 @@ pre {
   background:
     linear-gradient(180deg, transparent, oklch(0.12 0.026 260 / 0.86)),
     url("/brand/og.png") center / cover;
+  background-size: cover;
+  background-position: center;
   filter: grayscale(0.35) contrast(1.12);
   overflow: hidden;
   transition:
@@ -1038,9 +1066,7 @@ pre {
 .pin-card-media {
   width: 100%;
   height: 300px;
-  background:
-    linear-gradient(180deg, oklch(0.14 0.03 260 / 0.05), oklch(0.12 0.026 260 / 0.86)),
-    url("/brand/og.png") center / cover;
+  background: oklch(0.12 0.026 260);
   filter: grayscale(0.5) contrast(1.25);
   transform: scale(1);
   transition:
@@ -1048,9 +1074,46 @@ pre {
     filter 700ms ease;
 }
 
+.pin-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .pin-card:hover .pin-card-media {
   transform: scale(1.05);
   filter: grayscale(0.12) contrast(1.25);
+}
+
+.architecture-art-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 18px 0 0;
+}
+
+.architecture-art-grid figure {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid oklch(0.48 0.058 242 / 0.82);
+  border-radius: 12px;
+  background: linear-gradient(180deg, oklch(0.235 0.036 248 / 0.96), oklch(0.16 0.03 258 / 0.96));
+}
+
+.architecture-art-grid img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.architecture-art-grid figcaption {
+  color: var(--muted);
+  line-height: 1.45;
+  font-size: 0.95rem;
 }
 
 .pin-card > div:not(.pin-card-media) {
@@ -1401,6 +1464,14 @@ pre {
   .hero-copy h1 {
     font-size: 3.15rem;
     line-height: 1.04;
+  }
+
+  .proof-slab {
+    min-height: auto;
+  }
+
+  .proof-route {
+    grid-template-columns: 1fr;
   }
 
   .home-bento {
