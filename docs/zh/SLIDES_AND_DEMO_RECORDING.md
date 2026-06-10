@@ -13,6 +13,8 @@
 - 录屏脚本源：`pitch/draft.md`
 - Demo 录屏说明：`pitch/recording/demo-showcase.zh.md`
 - 最终 combined 视频：`pitch/recording/pitch-demo-combined-final.mp4`，270 秒，1920×1200
+- 公开视频 URL：`https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pitch-demo-combined-final.mp4`
+- 公开 Deck URL：`https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/deck.pdf`
 
 这版只服务 Demo 录屏展示。路径是：Agent 选择审计数据/API 供应商，CAW 约束付款权限，评委篡改价格或供应商钱包，打开 CAW proof。
 
@@ -57,9 +59,9 @@
 
 ## 提交前还缺什么
 
-- 公开 GitHub repo URL。
-- Unlisted YouTube、GitHub Release asset 或其他公开视频 URL。
-- Deck 的公开 URL，或确认平台允许直接上传 `pitch/deck.pdf`。
+- 公开 GitHub repo URL：`https://github.com/veithly/pactbreak-resource-procurement`。
+- 公开视频 URL 已用 GitHub Release asset 暂代。
+- Deck 的公开 URL 已用 GitHub Release asset 暂代。
 - Casual Hackathon 报名需要先通过审核，项目提交按钮才会出现。
 - 团队成员名称、邮箱、GitHub handle、角色需要最终确认。
 - 用户最终确认后才能点击 Submit。

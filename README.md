@@ -11,8 +11,9 @@ PactBreak is a runnable demo where a RiskOps Agent buys 1 approved security-audi
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Open-2dd4bf?style=for-the-badge)](https://pactbreak-treasury-firewall.veithly.workers.dev)
 [![Proof Board](https://img.shields.io/badge/Proof_Board-Inspect-0f172a?style=for-the-badge)](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
 [![Cobo CAW](https://img.shields.io/badge/Cobo_CAW-Live_Proof-2563eb?style=for-the-badge)](#live-caw-proof)
+[![Demo Video](https://img.shields.io/badge/Demo_Video-270s-f97316?style=for-the-badge)](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pitch-demo-combined-final.mp4)
 
-**Quick links:** [Live app](https://pactbreak-treasury-firewall.veithly.workers.dev) · [Demo path](#demo-path) · [Architecture](./docs/ARCHITECTURE.md) · [Deployment](./docs/DEPLOYMENT.md) · [Proof board](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
+**Quick links:** [Live app](https://pactbreak-treasury-firewall.veithly.workers.dev) · [Demo video](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pitch-demo-combined-final.mp4) · [Deck PDF](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/deck.pdf) · [Architecture](./docs/ARCHITECTURE.md) · [Deployment](./docs/DEPLOYMENT.md) · [Proof board](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
 
 </div>
 
