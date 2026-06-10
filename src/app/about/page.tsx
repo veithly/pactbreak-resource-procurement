@@ -35,15 +35,19 @@ export default function AboutPage() {
 
         <section className="architecture-art-grid" aria-label="Generated product material scenes">
           <figure>
-            <img src="/art/gpt-pro/procurement-desk.png" alt="Generated procurement console scene" />
+            <img src="/art/gpt-pro/round2/display/vendor-quote-lanes-01.jpg" alt="Generated procurement console scene" />
             <figcaption>Agent compares vendor quotes before requesting CAW authority.</figcaption>
           </figure>
           <figure>
-            <img src="/art/gpt-pro/caw-boundary.png" alt="Generated CAW authorization boundary scene" />
+            <img src="/art/gpt-pro/round2/display/caw-authorization-rail-01.jpg" alt="Generated CAW authorization boundary scene" />
             <figcaption>CAW keeps the safe transfer path narrower than the agent process.</figcaption>
           </figure>
           <figure>
-            <img src="/art/gpt-pro/proof-receipt.png" alt="Generated proof receipt board scene" />
+            <img src="/art/gpt-pro/round2/display/mutation-block-shield-01.jpg" alt="Generated judge mutation block scene" />
+            <figcaption>Unsafe amount or wallet edits stop before the agent can sign.</figcaption>
+          </figure>
+          <figure>
+            <img src="/art/gpt-pro/round2/display/proof-audit-board-01.jpg" alt="Generated proof receipt board scene" />
             <figcaption>The proof board keeps receipts, denial state, and audit timeline visible.</figcaption>
           </figure>
         </section>

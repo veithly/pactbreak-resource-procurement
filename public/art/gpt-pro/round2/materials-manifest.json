@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-06-10T09:20:00.000Z",
+  "skill": "gpt-pro-think",
+  "skillPath": "/Users/rick/Documents/MySkill/gpt-pro-think/SKILL.md",
+  "purpose": "Create separate product-specific web materials so the landing page does not reuse one image across every proof beat.",
+  "displayFormat": "JPG derivatives generated locally from GPT Pro PNG originals for faster page load.",
+  "assets": [
+    {
+      "name": "vendor quote lanes",
+      "session": "pactbreak-scene-vendor",
+      "conversationUrl": "https://chatgpt.com/c/6a29285b-cd8c-83a8-b32f-64d16c70e218",
+      "source": "/art/gpt-pro/round2/vendor-quote-lanes-01.png",
+      "display": "/art/gpt-pro/round2/display/vendor-quote-lanes-01.jpg",
+      "usedFor": "Hero proof slab, vendor-selection step, procurement path panel"
+    },
+    {
+      "name": "CAW authorization rail",
+      "session": "pactbreak-scene-caw",
+      "conversationUrl": "https://chatgpt.com/c/6a292919-afe0-83a3-9e33-e8313a43668f",
+      "source": "/art/gpt-pro/round2/caw-authorization-rail-01.png",
+      "display": "/art/gpt-pro/round2/display/caw-authorization-rail-01.jpg",
+      "usedFor": "CAW boundary bento, authorization step, architecture page"
+    },
+    {
+      "name": "mutation block shield",
+      "session": "pactbreak-scene-mutation",
+      "conversationUrl": "https://chatgpt.com/c/6a2929cd-9900-83a2-9ed4-baea387e456a",
+      "source": "/art/gpt-pro/round2/mutation-block-shield-01.png",
+      "display": "/art/gpt-pro/round2/display/mutation-block-shield-01.jpg",
+      "usedFor": "Judge-mutation bento, blocked-transfer step, architecture page"
+    },
+    {
+      "name": "proof audit board",
+      "session": "pactbreak-scene-proof",
+      "conversationUrl": "https://chatgpt.com/c/6a292a6e-b080-83a8-8f47-d9d4aeae02c2",
+      "source": "/art/gpt-pro/round2/proof-audit-board-01.png",
+      "display": "/art/gpt-pro/round2/display/proof-audit-board-01.jpg",
+      "usedFor": "Proof receipt bento, audit step, proof-facing architecture panel"
+    }
+  ],
+  "rejected": [
+    {
+      "session": "pactbreak-materials-round2",
+      "reason": "ChatGPT returned another four-panel collage after a multi-image prompt, so the image was not used in the product UI."
+    }
+  ]
+}

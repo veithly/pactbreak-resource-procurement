@@ -22,22 +22,22 @@ const proofSteps = [
   {
     title: "The agent selects a vendor",
     body: "RiskOps Agent compares price, SLA, risk score, and wallet allowlist before requesting spend authority.",
-    image: "/art/gpt-pro/procurement-desk.png"
+    image: "/art/gpt-pro/round2/display/vendor-quote-lanes-01.jpg"
   },
   {
     title: "CAW scopes the payment",
     body: "The Pact limits chain, token, destination, amount, and completion behavior for one procurement order.",
-    image: "/art/gpt-pro/caw-boundary.png"
+    image: "/art/gpt-pro/round2/display/caw-authorization-rail-01.jpg"
   },
   {
     title: "The judge mutates the order",
     body: "Price or wallet substitution turns the resource purchase into a blocked overspend attempt.",
-    image: "/art/gpt-pro/mutation-block.png"
+    image: "/art/gpt-pro/round2/display/mutation-block-shield-01.jpg"
   },
   {
     title: "The proof board keeps receipts",
     body: "Pact ID, denial code, tx hash, and audit counts stay visible after refresh.",
-    image: "/art/gpt-pro/proof-receipt.png"
+    image: "/art/gpt-pro/round2/display/proof-audit-board-01.jpg"
   }
 ];
 
@@ -163,7 +163,7 @@ export function HomeExperience() {
         </div>
 
         <div className="proof-slab" aria-label="Live CAW proof summary">
-          <img className="proof-slab-art" src="/art/gpt-pro/procurement-desk.png" alt="" />
+          <img className="proof-slab-art" src="/art/gpt-pro/round2/display/vendor-quote-lanes-01.jpg" alt="" />
           <div className="proof-slab-top">
             <span>CAW boundary</span>
             <BadgeCheck size={18} aria-hidden />
@@ -198,7 +198,7 @@ export function HomeExperience() {
 
       <section className="home-bento shell">
         <article className="bento-card bento-large has-media group">
-          <img src="/art/gpt-pro/caw-boundary.png" alt="" />
+          <img src="/art/gpt-pro/round2/display/caw-authorization-rail-01.jpg" alt="" />
           <div>
             <LockKeyhole size={24} aria-hidden />
             <h2>One narrow authority, four visible checkpoints</h2>
@@ -209,13 +209,13 @@ export function HomeExperience() {
           </p>
         </article>
         <article className="bento-card bento-tall has-media group scroll-media">
-          <img src="/art/gpt-pro/mutation-block.png" alt="" />
+          <img src="/art/gpt-pro/round2/display/mutation-block-shield-01.jpg" alt="" />
           <ShieldAlert size={24} aria-hidden />
           <h3>Vendor substitution</h3>
           <p>CAW returns `ADDRESS_NOT_WHITELISTED` when the transfer leaves the pact boundary.</p>
         </article>
         <article className="bento-card bento-tall has-media group scroll-media">
-          <img src="/art/gpt-pro/proof-receipt.png" alt="" />
+          <img src="/art/gpt-pro/round2/display/proof-audit-board-01.jpg" alt="" />
           <WalletCards size={24} aria-hidden />
           <h3>Approved purchase</h3>
           <p>The approved path signs and later resolves to a real Sepolia ETH transaction hash.</p>
