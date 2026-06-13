@@ -4,16 +4,16 @@
 
 # PactBreak Resource Procurement
 
-> **Compare 3 quotes, send 1 CAW payment in 60 seconds.**
+> **Compare 3 vendor quotes, send 1 CAW payment in 60 seconds.**
 
 PactBreak is a runnable demo where a RiskOps Agent buys 1 approved security-audit API/data package with Cobo Agentic Wallet authority. The agent compares vendor quotes, SLA, risk, wallet allowlist, and price, then requests CAW-bound payment authority. Existing live CAW proof: Pact `59f67ec0-8b3c-4d26-9403-0f70f083e3ec`, tx `0xae5e23759f56182d286a89ef55161e5e6af517e963e1f83a6e37d14f30c3e0ea`, denial `ADDRESS_NOT_WHITELISTED`.
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Open-2dd4bf?style=for-the-badge)](https://pactbreak-treasury-firewall.veithly.workers.dev)
 [![Proof Board](https://img.shields.io/badge/Proof_Board-Inspect-0f172a?style=for-the-badge)](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
 [![Cobo CAW](https://img.shields.io/badge/Cobo_CAW-Live_Proof-2563eb?style=for-the-badge)](#live-caw-proof)
-[![Demo Video](https://img.shields.io/badge/Demo_Video-270s-f97316?style=for-the-badge)](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pitch-demo-combined-final.mp4)
+[![Demo Video](https://img.shields.io/badge/Demo_Video-2min-f97316?style=for-the-badge)](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-demo-zh-2min.mp4)
 
-**Quick links:** [Live app](https://pactbreak-treasury-firewall.veithly.workers.dev) · [Demo video](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pitch-demo-combined-final.mp4) · [Deck PDF](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/deck.pdf) · [Architecture](./docs/ARCHITECTURE.md) · [Deployment](./docs/DEPLOYMENT.md) · [Proof board](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
+**Quick links:** [Live app](https://pactbreak-treasury-firewall.veithly.workers.dev) · [Demo video](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-demo-zh-2min.mp4) · [Deck PDF](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-pitch-deck-zh-2min.pdf) · [Pitch deck video](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-pitch-deck-zh-2min.mp4) · [Architecture](./docs/ARCHITECTURE.md) · [Deployment](./docs/DEPLOYMENT.md) · [Proof board](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
 
 </div>
 
