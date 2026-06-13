@@ -25,93 +25,107 @@ const proof = {
 
 const liveUrl = "https://pactbreak-treasury-firewall.veithly.workers.dev";
 const repoUrl = "https://github.com/veithly/pactbreak-resource-procurement";
-const hero = "三家报价，一笔 CAW 付款。价格或钱包被改，CAW 直接拦住。";
+const hero = "三家报价，一笔 CAW 付款。评委改价格、换钱包，CAW 当场拦住。";
 
 const demoScenes = [
   {
-    id: "01_result",
-    title: "先看结果",
+    id: "01_open",
+    title: "打开采购台",
     text:
-      "先看结果。PactBreak 让 RiskOps Agent 比三家安全审计数据报价，然后在一分钟内发起一笔 Cobo Agentic Wallet 付款。评委可以改价格，也可以换收款地址。只要离开 Pact 边界，钱不会动。"
+      "各位评委，我直接跑实机。这里是 PactBreak 的采购台。RiskOps Agent 要买一份安全数据，它可以自己选供应商，但付款一定要走 Cobo Agentic Wallet。"
   },
   {
     id: "02_quotes",
-    title: "报价选择",
+    title: "看三家报价",
     text:
-      "这里不是钱包面板。Agent 在买资源。它看价格、服务等级、风险分和收款地址白名单，最后只选择 AuditMesh 这一单。Sentinel Plus 超预算，Shadow Index 的钱包不在允许范围内。"
+      "先看报价。AuditMesh 在预算内，钱包也在 Pact 允许的名单里；另外两家，一个太贵，一个收款地址不该付。"
   },
   {
     id: "03_receipt",
-    title: "CAW 付款证据",
+    title: "挂上 CAW 记录",
     text:
-      "点击附加 CAW 收据后，证明区出现 Pact 编号和一笔已有的真实转账哈希。这里说清楚：这笔哈希是原型的 CAW 支付证据，不把它伪装成新的供应商结算。"
+      "我点 Attach live CAW receipt。订单里现在有 Pact ID 和 tx hash。这里用的是已经准备好的 CAW live 记录，方便你们点开回看，我不把它说成刚刚新打出去的钱。"
   },
   {
-    id: "04_mutation",
-    title: "评委改订单",
+    id: "04_price",
+    title: "改价格",
     text:
-      "现在把价格抬到 Pact 上限之外，或者把供应商钱包换成另一个地址。页面不是演一个固定成功路径。它会重新计算这张订单能不能交给 CAW 执行。"
+      "现在我改订单。先把价格抬到上限外，右侧马上停住，原因写得很直接：金额超过 Pact cap。"
   },
   {
-    id: "05_block",
-    title: "边界拦截",
+    id: "05_wallet",
+    title: "换钱包",
     text:
-      "结果会变成阻断。价格过线、本地策略先挡住；地址不在 Pact 允许范围内时，CAW 返回 ADDRESS_NOT_WHITELISTED。关键点是，失败也被保存下来。"
+      "再换供应商钱包。这个地址在 denylist 里，所以 CAW 路径不会继续。结果就是钱没有出去，页面也留下拒绝码。"
   },
   {
-    id: "06_proof",
-    title: "证明板",
+    id: "06_records",
+    title: "看记录",
     text:
-      "证明板把三件事分开：Agent 选择了哪家，CAW 允许过哪笔支付，危险改动为什么被拒。Pact、交易哈希、拒绝码和审计计数都能复查，刷新页面也还在。"
+      "我往下看记录。这里有 Pact、tx hash、ADDRESS_NOT_WHITELISTED，还有 allowed 十九、denied 一。"
   },
   {
     id: "07_close",
-    title: "复查路径",
+    title: "回看全流程",
     text:
-      "这就是完整 demo：Agent 形成采购意图，CAW 给出资金边界，评委改订单，系统给出允许或拒绝证据。想复查，打开线上地址，看证明板，再看代码里的 CAW 适配器。"
+      "最后打开 proof board 和 run detail。评委可以沿着这几页回看每一次选择、拦截和 CAW 记录。最后一句：Agent 可以采购资源，但资金边界由 CAW 管住。"
   }
 ];
 
 const pitchScenes = [
   {
     id: "01_hook",
-    title: "Hook",
+    title: "开场",
     text:
-      "一个 Agent 想买数据，最危险的不是报价贵，而是它拿着一把过大的钥匙。PactBreak 把采购动作缩到一个清楚的边界里：三家报价，一笔 CAW 付款，价格或钱包被改就拦住。"
+      "各位评委，我用一句话讲：PactBreak 是给采购 Agent 用的 CAW 支付保险丝。Agent 可以自己选资源，但付款必须按 Pact 里写好的范围来。"
   },
   {
     id: "02_problem",
-    title: "Problem",
+    title: "问题",
     text:
-      "现在常见做法有两个坏选择。给 Agent 一个服务器密钥，它可能花错钱；每次都等人工审批，它又不像 Agent 了。Cobo Agentic Wallet 正好适合这个缺口：Agent 可以花钱，但只能按 Pact 花。"
+      "问题很现实。Agent 以后会买数据、API、审计报告和算力。你不能给它一把服务器私钥；但每笔都叫人审批，小额采购又跑不起来。"
   },
   {
     id: "03_demo",
-    title: "Demo",
+    title: "演示",
     text:
-      "演示里，RiskOps Agent 选择 AuditMesh 的安全审计数据包。随后评委把价格抬高，或者把收款钱包换掉。订单会从可付款变成阻断，证明板留下 Pact、交易哈希、拒绝码和审计计数。"
+      "所以 demo 只做一个场景：安全团队要买一份风险数据。RiskOps Agent 从三家报价里选 AuditMesh，然后把付款交给 Cobo Agentic Wallet。"
   },
   {
-    id: "04_mechanism",
-    title: "Mechanism",
+    id: "04_path",
+    title: "付款路径",
     text:
-      "机制只有三层。前端收集采购意图和评委改动；策略层先判断金额、用途、地址和代币；CAW 执行被允许的转账，并把拒绝和审计记录拉回产品里。没有 CAW，这个项目只剩报价表。"
+      "我当场改价格、换钱包。正常订单能挂上 CAW 付款记录；改坏的订单会停住，CAW 返回 ADDRESS_NOT_WHITELISTED。屏幕上有 Pact ID 和 tx hash。"
   },
   {
-    id: "05_proof",
-    title: "Proof",
+    id: "05_close",
+    title: "收尾",
     text:
-      "当前原型已经公开运行。CAW 证据包括 Pact 编号、真实转账哈希、ADDRESS_NOT_WHITELISTED 拒绝码，以及 allowed 十九、denied 一的审计计数。下一步是把同一套边界接到真实数据供应商。"
+      "代码里也很直：前端提交订单，policy 先看预算、用途、代币和地址，CAW adapter 只把合格订单送去付款。下一步，我们会把每个供应商订单接成独立 CAW 执行，让 Agent 按订单付钱。"
   }
 ];
 
 const scriptMarkdown = `# PactBreak 2 分钟中文交付稿
 
-## 公开口径
+## 交付文件
+
+- 纯 Demo 视频：\`submission-media/pactbreak-demo-zh-2min.mp4\`
+- Pitch deck 视频：\`submission-media/pactbreak-pitch-deck-zh-2min.mp4\`
+- Pitch deck PDF：\`submission-media/pactbreak-pitch-deck-zh-2min.pdf\`
+- 中文讲稿与表单文案：\`submission-media/pactbreak-zh-2min-script.md\`
+
+## QA 记录
+
+- Demo 视频：120 秒，1920x1200，30fps，H.264 + AAC，只放实机操作画面。
+- Demo 旁白：87.2 秒，按屏幕动作讲，后半段留给评委看 proof board 和 run detail。
+- Pitch deck 视频：120 秒，1920x1200，30fps，H.264 + AAC。
+- Hunter audit：claims、judge-red-team、submission、external-skills 全部通过。
+
+## 表单主句
 
 ${hero}
 
-公共材料只提 Cobo Agentic Wallet、CAW、Pact、交易哈希、拒绝码和审计记录。制作和发布细节不进入评委可见文案。
+给表单用：只写 Cobo Agentic Wallet、CAW、Pact、tx hash、拒绝码、allowed 十九、denied 一。别写制作工具。
 
 ## 纯 Demo 视频讲稿
 
@@ -126,15 +140,17 @@ ${pitchScenes.map((scene, index) => `### ${index + 1}. ${scene.title}\n\n${scene
 项目名称：PactBreak Resource Procurement
 
 项目描述：
-PactBreak 让 RiskOps Agent 比三家审计数据报价，在 CAW Pact 边界内发起一笔付款。评委可以改价格或供应商钱包；安全路径留下真实 CAW 转账哈希，危险路径留下拒绝码和审计记录。
+PactBreak 是给采购 Agent 用的 CAW 支付原型。RiskOps Agent 在三家安全数据报价里选供应商，合格订单走 CAW Pact；评委现场改价格或钱包后，页面会留下 CAW 拒绝码。成功记录里有 tx hash，失败记录里有 ADDRESS_NOT_WHITELISTED 和 allowed 十九、denied 一。
 
 项目链接：${liveUrl}
 
 GitHub Repo Link：${repoUrl}
 
-Demo 视频链接：上传 \`submission-media/pactbreak-demo-zh-2min.mp4\` 后填写公开视频链接。
+Demo 视频链接：https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-demo-zh-2min.mp4
 
-PPT 链接：上传 \`submission-media/pactbreak-pitch-deck-zh-2min.pdf\` 后填写公开 deck 链接，或直接作为附件提交。
+Pitch deck 视频链接：https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-pitch-deck-zh-2min.mp4
+
+PPT 链接：https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-pitch-deck-zh-2min.pdf
 `;
 
 function narrationManifest(kind, scenes) {
@@ -144,7 +160,7 @@ function narrationManifest(kind, scenes) {
     voice: "mimo",
     first_sentence: scenes[0].text,
     instruction:
-      "中文产品演示旁白。声音冷静、有把握，语速接近两分钟 demo，不要新闻腔，不要广告腔。Cobo Agentic Wallet 读作 Cobo Agentic Wallet，CAW 读作 C A W，Pact 读作 Pact。保留轻微停顿，重点数字读清楚。",
+      "中文产品演示旁白。像创始人在评委面前边点屏幕边讲，语气自然，别像新闻播报，也别像广告。遇到短句要稍微停顿，像真人在换屏幕。Cobo Agentic Wallet 读作 Cobo Agentic Wallet，CAW 读作 C A W，Pact 读作 Pact。重点数字和拒绝码读清楚。",
     scenes: scenes.map((scene) => ({
       id: `${kind}_${scene.id}`,
       title: scene.title,
@@ -163,7 +179,9 @@ async function ensureDirs() {
     demoVideoDir,
     pitchVideoDir,
     path.join(demoVideoDir, "assets"),
+    path.join(demoVideoDir, "images"),
     path.join(pitchVideoDir, "assets"),
+    path.join(pitchVideoDir, "deck-thumbs"),
     submissionDir,
     path.join(outRoot, "assets")
   ]) {
@@ -191,9 +209,12 @@ async function copyAssets() {
   ];
   for (const [from, name] of imageCopies) {
     await copyIfExists(path.join(root, from), path.join(imagesDir, name));
+    await copyIfExists(path.join(root, from), path.join(demoVideoDir, "images", name));
   }
-  await copyIfExists(path.join(root, "pitch/recording/tight.mp4"), path.join(demoVideoDir, "assets", "tight.mp4"));
-  await copyIfExists(path.join(root, "pitch/recording/tight.mp4"), path.join(pitchVideoDir, "assets", "tight.mp4"));
+  for (const name of ["slide-01.png", "slide-02.png", "slide-03.png", "slide-04.png", "slide-05.png"]) {
+    await copyIfExists(path.join(deckThumbsDir, name), path.join(pitchVideoDir, "deck-thumbs", name));
+  }
+  await copyIfExists(path.join(root, "pitch/recording/zh-demo-real/demo-120-gop30.mp4"), path.join(demoVideoDir, "assets", "real-demo.mp4"));
   await copyIfExists(path.join(guizangRoot, "assets/motion.min.js"), path.join(outRoot, "assets", "motion.min.js"));
 }
 
@@ -211,7 +232,7 @@ function buildSlides() {
       <div data-anim="kicker" class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em">AGENTIC COMMERCE / RESOURCE PROCUREMENT</div>
       <h1 data-anim="title" style="align-self:center;font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(8.6vw,15vh);line-height:.96;letter-spacing:-.025em;color:#fff;max-width:13ch">三家报价<br><span style="font-style:italic;font-weight:300">一笔</span> CAW 付款</h1>
       <div data-anim="bottom" style="display:grid;grid-template-rows:auto auto;gap:1.6vh;border-top:1px solid rgba(255,255,255,.24);padding-top:2vh">
-        <div class="lead" style="max-width:58ch;color:rgba(255,255,255,.88);font-weight:300">价格或钱包被改，Pact 边界会先拦住。证明留在交易哈希、拒绝码和审计记录里。</div>
+        <div class="lead" style="max-width:58ch;color:rgba(255,255,255,.88);font-weight:300">评委改价格或钱包，Pact 先拦。tx hash、拒绝码、allowed 十九、denied 一留在记录页。</div>
         <div style="display:flex;justify-content:space-between;align-items:end">
           <div class="t-meta" style="color:rgba(255,255,255,.64)">Live: pactbreak-treasury-firewall.veithly.workers.dev</div>
           <div class="t-meta" style="color:rgba(255,255,255,.64)">CAW / PACT / AUDIT</div>
@@ -226,21 +247,21 @@ function buildSlides() {
     ${slideChrome("Problem · Agent money authority", "02 / 05")}
     <div data-anim="line" style="display:flex;flex-direction:column;gap:1.4vh;margin-bottom:7vh">
       <div class="t-meta">THE TRADE-OFF</div>
-      <h2 class="h-xl-zh" style="font-size:min(5.4vw,9.4vh);max-width:14ch">Agent 要花钱，不能拿万能钥匙。</h2>
+      <h2 class="h-xl-zh" style="font-size:min(5.4vw,9.4vh);max-width:14ch">Agent 要花钱，不能拿服务器私钥。</h2>
     </div>
     <div class="duo-compare" style="flex:1;min-height:0">
       <div class="duo-half col" style="padding-right:3vw">
         <span class="t-cat">Loose Key</span>
         <h3 style="font-size:min(4.6vw,8vh);font-weight:200;line-height:1">服务器 key 太宽</h3>
         <p class="lead" style="font-size:max(22px,1.5vw);max-width:26ch">一个采购 Agent 可以误付、超付，甚至把钱打到错误地址。</p>
-        <div class="t-meta" style="margin-top:auto;color:var(--text-helper)">风险：钱动了，证据晚到。</div>
+        <div class="t-meta" style="margin-top:auto;color:var(--text-helper)">风险：钱先动，记录后补。</div>
       </div>
       <span class="vrule"></span>
       <div class="duo-half col" style="padding-left:3vw">
         <span class="t-cat" style="color:var(--accent)">CAW Pact</span>
-        <h3 style="font-size:min(4.6vw,8vh);font-weight:200;line-height:1;color:var(--accent)">边界先写好</h3>
-        <p class="lead" style="font-size:max(22px,1.5vw);max-width:26ch">链、代币、金额、地址和用途都被限制，Agent 仍然能自己执行。</p>
-        <div class="t-meta" style="margin-top:auto;color:var(--accent)">结果：允许与拒绝都可复查。</div>
+        <h3 style="font-size:min(4.6vw,8vh);font-weight:200;line-height:1;color:var(--accent)">Pact 先写好</h3>
+        <p class="lead" style="font-size:max(22px,1.5vw);max-width:26ch">链、代币、金额、地址和用途先写进 Pact，Agent 仍然能自己执行。</p>
+        <div class="t-meta" style="margin-top:auto;color:var(--accent)">结果：放行和拒绝都能回看。</div>
       </div>
     </div>
   </div>
@@ -263,7 +284,7 @@ function buildSlides() {
       </div>
       <div class="image-hero-stats" style="gap:4vw">
         <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">QUOTES</div><div style="font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">3</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">价格、SLA、风险、地址白名单</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">CAW TX</div><div style="font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">1</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">已有真实 CAW 支付证据</p></div>
+        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">CAW TX</div><div style="font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em">1</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">已有真实 CAW 付款记录</p></div>
         <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">DENIAL</div><div style="font-weight:200;font-size:min(4.6vw,7.6vh);line-height:.95;letter-spacing:-.04em;color:var(--accent)">1</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">ADDRESS_NOT_WHITELISTED</p></div>
       </div>
     </div>
@@ -272,12 +293,12 @@ function buildSlides() {
 
 <section class="slide" data-layout="S17" data-animate="system-diagram">
   <div class="canvas-card">
-    ${slideChrome("Mechanism · What breaks without CAW", "04 / 05")}
+    ${slideChrome("CAW path · What breaks without it", "04 / 05")}
     <div style="flex:1;display:grid;grid-template-columns:.9fr 1.1fr;gap:5vw;align-items:center;min-height:0">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:2.2vh">
         <div class="t-meta">THREE LAYERS</div>
-        <h2 class="h-xl-zh" style="font-size:min(5.2vw,9vh);max-width:12ch">不是报价表，是资金执行边界。</h2>
-        <p class="lead" style="font-size:max(21px,1.45vw);max-width:32ch">前端收集采购意图；策略层判断金额、用途、地址和代币；CAW 执行被允许的转账，并返回审计证据。</p>
+        <h2 class="h-xl-zh" style="font-size:min(5.2vw,9vh);max-width:12ch">报价后面，还有付款范围。</h2>
+        <p class="lead" style="font-size:max(21px,1.45vw);max-width:32ch">前端提交采购单；policy 看金额、用途、地址和代币；CAW 只执行允许范围内的转账。</p>
       </div>
       <div data-anim="up" class="system-diagram" style="position:relative;height:70vh">
         <svg class="sys-svg" viewBox="0 0 720 620" style="width:100%;height:100%" aria-hidden="true">
@@ -288,7 +309,7 @@ function buildSlides() {
         </svg>
         <div class="sys-label" style="position:absolute;left:7%;top:9%"><b>Intent</b><span>报价与评委改动</span></div>
         <div class="sys-label" style="position:absolute;right:3%;top:36%"><b>Policy</b><span>金额、地址、用途</span></div>
-        <div class="sys-label" style="position:absolute;left:26%;bottom:7%"><b>CAW</b><span>Pact、转账、审计</span></div>
+        <div class="sys-label" style="position:absolute;left:26%;bottom:7%"><b>CAW</b><span>Pact、转账、记录</span></div>
         <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#fff;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:600;letter-spacing:.08em">Pact</div>
       </div>
     </div>
@@ -300,16 +321,16 @@ function buildSlides() {
     <div class="split-half">
       <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden">
         <canvas class="ascii-bg" aria-hidden="true"></canvas>
-        <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1"><div class="l">05 / 05</div><div class="r">PROOF</div></div>
+        <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1"><div class="l">05 / 05</div><div class="r">RECORDS</div></div>
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
-          <div class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em;margin-bottom:1.6vh">VERIFY</div>
-          <h2 style="font-size:min(7.4vw,13vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:#fff">别听承诺。<br>看<span style="font-style:italic;font-weight:300">证据</span>。</h2>
-          <div style="font-size:max(16px,1.1vw);line-height:1.55;color:rgba(255,255,255,.84);font-weight:400;max-width:34ch;margin-top:1.4vh">Pact、交易哈希、拒绝码和审计计数都放在证明板。</div>
+          <div class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em;margin-bottom:1.6vh">REPLAY</div>
+          <h2 style="font-size:min(7.4vw,13vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:#fff">改坏订单。<br>看<span style="font-style:italic;font-weight:300">CAW</span> 怎么拦。</h2>
+          <div style="font-size:max(16px,1.1vw);line-height:1.55;color:rgba(255,255,255,.84);font-weight:400;max-width:34ch;margin-top:1.4vh">Pact、tx hash、拒绝码、allowed 十九、denied 一都放在记录页。</div>
         </div>
         <div data-anim="signature" style="border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;position:relative;z-index:1" class="t-meta">pactbreak-treasury-firewall.veithly.workers.dev</div>
       </div>
       <div class="half" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
-        <div class="chrome-min"><div class="l">CAW PROOF PACK</div><div class="r">OPEN SOURCE</div></div>
+        <div class="chrome-min"><div class="l">CAW RECORDS</div><div class="r">OPEN SOURCE</div></div>
         <div data-anim="rules" style="display:grid;gap:2.2vh">
           ${proofRow("PACT", proof.pactId)}
           ${proofRow("TX", "0xae5e...c3e0ea")}
@@ -365,6 +386,7 @@ function videoCss() {
     .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
     .chip{border:1px solid rgba(255,107,53,.52);background:rgba(255,107,53,.1);padding:16px 18px;border-radius:999px;font-size:21px;color:#ffd8c8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .app-video{position:absolute;left:96px;right:96px;top:92px;width:1728px;height:982px;object-fit:cover;border:2px solid rgba(247,242,232,.18);border-radius:8px;box-shadow:0 48px 120px rgba(0,0,0,.5);z-index:4}
+    .real-demo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#020711}
     .video-label{position:absolute;left:130px;top:126px;z-index:6;background:rgba(17,22,20,.88);border:1px solid rgba(255,255,255,.18);padding:14px 18px;border-radius:999px;font-size:22px;color:var(--paper)}
     .lower{position:absolute;left:130px;bottom:112px;z-index:6;display:grid;gap:8px;max-width:820px;background:rgba(17,22,20,.86);border:1px solid rgba(255,255,255,.18);padding:24px 28px;border-radius:8px}
     .lower b{font-size:28px;color:var(--accent)} .lower span{font-size:22px;color:var(--muted)}
@@ -380,33 +402,13 @@ function videoCss() {
 function buildDemoVideoHtml() {
   return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>PactBreak 纯 Demo 中文 2 分钟</title><style>${videoCss()}</style></head><body>
   <div id="root" data-composition-id="root" data-start="0" data-width="1920" data-height="1200" data-duration="120">
-    <section id="s1" class="scene clip" data-start="0" data-duration="18" data-track-index="1">
-      <div class="copy"><div class="kicker">Demo / result first</div><h1>三家报价，一笔 CAW 付款。</h1><p>评委改价格或钱包，Pact 边界会先拦住。成功和失败都留下证据。</p></div>
-      <div class="visual"><div class="panel"><img class="media" src="../images/01-hero.png"></div><div class="chips"><div class="chip">Pact ${proof.pactId.slice(0, 8)}...</div><div class="chip">tx 0xae5e...c3e0ea</div><div class="chip">${proof.deniedCode}</div><div class="chip">${proof.audit}</div></div></div>
-    </section>
-    <section id="s2" class="scene clip" data-start="16" data-duration="20" data-track-index="2">
-      <div class="copy"><div class="kicker">Step 1 / quote decision</div><h1>Agent 先选资源，不先摸钱。</h1><p>价格、SLA、风险、钱包白名单一起进表。只有 AuditMesh 进入 CAW 付款边界。</p></div>
-      <div class="visual"><div class="panel"><img class="media" src="../images/vendor-quote-lanes.jpg"></div><div class="route"><div>AuditMesh</div><div>Sentinel Plus</div><div>Shadow Index</div><div>CAW boundary</div></div></div>
-    </section>
-    <video id="demo-live-queue" class="app-video clip" data-start="34" data-duration="27" data-track-index="10" data-media-start="0" src="./assets/tight-gop30.mp4" muted playsinline></video>
-    <div id="demo-live-queue-label" class="video-label clip" data-start="34" data-duration="27" data-track-index="11">Live product plate · queue and receipt</div>
-    <div id="demo-receipt-note" class="lower clip" data-start="45" data-duration="15" data-track-index="12"><b>CAW 付款证据附加</b><span>Pact 与真实 tx hash 进入证明板，但不伪装成新的供应商结算。</span></div>
-    <section id="s4" class="scene clip" data-start="59" data-duration="20" data-track-index="4">
-      <div class="copy"><div class="kicker">Step 2 / mutate</div><h1>现在故意把订单改坏。</h1><p>抬高价格，或者把供应商钱包替换掉。页面会重新计算这张订单能不能交给 CAW。</p></div>
-      <div class="visual"><div class="panel"><img class="media" src="../images/mutation-block-shield.jpg"></div><div class="panel pad"><div class="big-num">BLOCK</div><p>危险改动不会进入资金执行。</p></div></div>
-    </section>
-    <video id="demo-live-proof" class="app-video clip" data-start="77" data-duration="24" data-track-index="13" data-media-start="28" src="./assets/tight-gop30.mp4" muted playsinline></video>
-    <div id="demo-live-proof-label" class="video-label clip" data-start="77" data-duration="24" data-track-index="14">Live product plate · mutation and proof</div>
-    <div id="demo-denial-note" class="lower clip" data-start="86" data-duration="15" data-track-index="15"><b>${proof.deniedCode}</b><span>${proof.deniedReason}</span></div>
-    <section id="s6" class="scene clip" data-start="100" data-duration="16" data-track-index="6">
-      <div class="copy"><div class="kicker">Step 3 / proof board</div><h1>证明要能复查。</h1><p>Agent 选择、CAW 支付、危险拒绝和审计计数分开存放。刷新页面也还能看。</p></div>
-      <div class="visual"><div class="panel"><img class="media" src="../images/03-proof.png"></div><div class="proof-grid panel pad">${proofRowsHtml()}</div></div>
-    </section>
-    <section id="s7" class="scene clip" data-start="114" data-duration="6" data-track-index="7">
-      <div class="copy"><div class="kicker">Inspect next</div><h1>线上可跑，代码可查。</h1><p>${liveUrl}<br>${repoUrl}</p></div>
-      <div class="visual"><div class="panel"><img class="media" src="../images/proof-audit-board.jpg"></div></div>
-    </section>
-  </div><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><script>${videoTimeline(["s1", "s2", "s4", "s6", "s7"], [0, 16, 59, 100, 114])}</script></body></html>`;
+    <video id="real-demo" class="real-demo clip" data-start="0" data-duration="120" data-track-index="1" data-media-start="0" src="./assets/real-demo.mp4" muted playsinline></video>
+  </div><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.to({}, { duration: 120 });
+    window.__timelines["root"] = tl;
+  </script></body></html>`;
 }
 
 function proofRowsHtml() {
@@ -422,16 +424,16 @@ function buildPitchVideoHtml() {
   return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>PactBreak Pitch Deck 中文 2 分钟</title><style>${videoCss()}</style></head><body>
   <div id="root" data-composition-id="root" data-start="0" data-width="1920" data-height="1200" data-duration="120">
     ${slideScene("p1", 0, 25, "slide-01.png", "01 / Hook", "三家报价，一笔 CAW 付款。")}
-    ${slideScene("p2", 23, 25, "slide-02.png", "02 / Problem", "Agent 花钱不能拿万能钥匙。")}
-    ${slideScene("p3", 46, 26, "slide-03.png", "03 / Demo", "评委改订单，系统留下允许或拒绝证据。")}
-    ${slideScene("p4", 70, 25, "slide-04.png", "04 / Mechanism", "没有 CAW，只剩报价表。")}
-    ${slideScene("p5", 93, 27, "slide-05.png", "05 / Proof", "Pact、tx、拒绝码、审计计数都可复查。")}
+    ${slideScene("p2", 23, 25, "slide-02.png", "02 / Problem", "Agent 花钱不能拿服务器私钥。")}
+    ${slideScene("p3", 46, 26, "slide-03.png", "03 / Demo", "评委改订单，页面留下付款或拒绝记录。")}
+    ${slideScene("p4", 70, 25, "slide-04.png", "04 / CAW path", "CAW 决定这笔钱能不能动。")}
+    ${slideScene("p5", 93, 27, "slide-05.png", "05 / Records", "Pact、tx、拒绝码、allowed、denied 都能回看。")}
   </div><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><script>${videoTimeline(["p1", "p2", "p3", "p4", "p5"], [0, 23, 46, 70, 93])}</script></body></html>`;
 }
 
 function slideScene(id, start, duration, image, label, line) {
   return `<section id="${id}" class="scene clip" data-start="${start}" data-duration="${duration}" data-track-index="${start + 1}" style="display:block;padding:0;background:#111614">
-    <img class="slide-img" src="../deck-thumbs/${image}">
+    <img class="slide-img" src="deck-thumbs/${image}">
     <div class="frame-title">${label} · ${line}</div>
     <div class="marker"></div>
   </section>`;
@@ -443,20 +445,29 @@ function videoTimeline(ids, starts) {
     const tl = gsap.timeline({ paused: true });
     const starts = ${JSON.stringify(starts)};
     const ids = ${JSON.stringify(ids)};
+    const targets = (selector) => gsap.utils.toArray(selector);
+    const fromToIf = (selector, fromVars, toVars, at) => {
+      const els = targets(selector);
+      if (els.length) tl.fromTo(els, fromVars, toVars, at);
+    };
+    const toIf = (selector, toVars, at) => {
+      const els = targets(selector);
+      if (els.length) tl.to(els, toVars, at);
+    };
     ids.forEach((id, i) => {
       const t = starts[i] + 0.18;
-      tl.fromTo("#" + id, { opacity: 0 }, { opacity: 1, duration: 0.65, ease: "power3.out" }, t);
-      tl.fromTo("#" + id + " .kicker, #" + id + " .frame-title", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, t + 0.15);
-      tl.fromTo("#" + id + " h1", { y: 46, opacity: 0 }, { y: 0, opacity: 1, duration: 0.72, ease: "power4.out" }, t + 0.28);
-      tl.fromTo("#" + id + " p", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.62, ease: "power2.out" }, t + 0.45);
-      tl.fromTo("#" + id + " .panel", { y: 52, rotateX: -8, opacity: 0 }, { y: 0, rotateX: 0, opacity: 1, duration: 0.82, ease: "back.out(0.85)", stagger: 0.12 }, t + 0.35);
-      tl.fromTo("#" + id + " .chip, #" + id + " .proof-row, #" + id + " .route div", { x: 24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.48, ease: "power2.out", stagger: 0.09 }, t + 0.78);
-      tl.to("#" + id + " .marker", { width: 620, duration: 0.55, ease: "power3.out" }, t + 1.1);
+      fromToIf("#" + id, { opacity: 0 }, { opacity: 1, duration: 0.65, ease: "power3.out" }, t);
+      fromToIf("#" + id + " .kicker, #" + id + " .frame-title", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, t + 0.15);
+      fromToIf("#" + id + " h1", { y: 46, opacity: 0 }, { y: 0, opacity: 1, duration: 0.72, ease: "power4.out" }, t + 0.28);
+      fromToIf("#" + id + " p", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.62, ease: "power2.out" }, t + 0.45);
+      fromToIf("#" + id + " .panel", { y: 52, rotateX: -8, opacity: 0 }, { y: 0, rotateX: 0, opacity: 1, duration: 0.82, ease: "back.out(0.85)", stagger: 0.12 }, t + 0.35);
+      fromToIf("#" + id + " .chip, #" + id + " .proof-row, #" + id + " .route div", { x: 24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.48, ease: "power2.out", stagger: 0.09 }, t + 0.78);
+      toIf("#" + id + " .marker", { width: 620, duration: 0.55, ease: "power3.out" }, t + 1.1);
     });
-    tl.fromTo(".video-label, .lower", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", stagger: 0.18 }, 34.4);
-    tl.to(".app-video", { filter: "saturate(1.12) contrast(1.04)", duration: 1.2, ease: "sine.inOut" }, 34.2);
-    tl.to(".lower b", { color: "#67d391", duration: 0.4, ease: "power2.out" }, 46.5);
-    tl.to(".lower b", { color: "#ff6b35", duration: 0.4, ease: "power2.out" }, 87.5);
+    fromToIf(".video-label, .lower", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", stagger: 0.18 }, 34.4);
+    toIf(".app-video", { filter: "saturate(1.12) contrast(1.04)", duration: 1.2, ease: "sine.inOut" }, 34.2);
+    toIf(".lower b", { color: "#67d391", duration: 0.4, ease: "power2.out" }, 46.5);
+    toIf(".lower b", { color: "#ff6b35", duration: 0.4, ease: "power2.out" }, 87.5);
     window.__timelines["root"] = tl;
   `;
 }
@@ -486,7 +497,7 @@ async function updateExternalSkillUsage() {
       loaded_at: now,
       why_used: "Generate the new Chinese two-minute pitch deck and PDF.",
       output_file: "pitch/zh-2min/deck.html",
-      evidence_summary: "Generated a five-slide Chinese deck around CAW payment, mutation, proof, and mechanism.",
+      evidence_summary: "Generated a five-slide Chinese deck around CAW payment, mutation, records, and mechanism.",
       fallback_if_missing: "Use the existing demo-recording deck and record the weaker deck polish gap.",
       status: "used"
     },
@@ -495,8 +506,8 @@ async function updateExternalSkillUsage() {
       installed_path: "/Users/rick/.skills-manager/skills/hyperframes/SKILL.md",
       loaded_at: now,
       why_used: "Render the new Chinese pure-demo video and pitch-deck video as silent HTML compositions before audio mux.",
-      output_file: "pitch/zh-2min/demo-video/index.html; pitch/zh-2min/pitch-video/index.html",
-      evidence_summary: "Two 1920x1200 video projects hold the demo plate, deck thumbs, proof chips, and timed overlays.",
+      output_file: "submission-media/pactbreak-demo-zh-2min.mp4",
+      evidence_summary: "Two 1920x1200 video projects hold the demo plate, deck thumbs, CAW record chips, and timed overlays.",
       fallback_if_missing: "Do not ship a raw screen recording; keep local MP4 pending and record a video blocker.",
       status: "used"
     },
@@ -504,9 +515,9 @@ async function updateExternalSkillUsage() {
       skill: "humanizer-zh",
       installed_path: "/Users/rick/.skills-manager/skills/humanizer-zh/SKILL.md",
       loaded_at: now,
-      why_used: "Rewrite Chinese narration and submission-facing script so it reads like a founder demo, not AI copy.",
+      why_used: "Rewrite Chinese narration and submission-facing script so it sounds like a founder talking to judges during the demo.",
       output_file: "pitch/zh-2min/script.md",
-      evidence_summary: "Chinese copy uses short concrete sentences, names the CAW proof, and avoids generic hype.",
+      evidence_summary: "Chinese copy uses screen actions, CAW records, rejection codes, and short spoken sentences.",
       fallback_if_missing: "Keep factual copy and mark Chinese copy polish as incomplete.",
       status: "used"
     },
@@ -516,7 +527,7 @@ async function updateExternalSkillUsage() {
       loaded_at: now,
       why_used: "Remove AI-flavored filler from the Chinese narration, deck notes, and form snippets.",
       output_file: "docs/zh/PITCH_AND_DEMO_2MIN.md",
-      evidence_summary: "Banned phrases were avoided; public copy only names sponsor technology and proof surfaces.",
+      evidence_summary: "Banned phrases were avoided; public copy only names sponsor technology, screen actions, and inspectable records.",
       fallback_if_missing: "Proceed with factual copy and rerun a manual slop checklist.",
       status: "used"
     }

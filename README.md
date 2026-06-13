@@ -6,14 +6,14 @@
 
 > **Compare 3 vendor quotes, send 1 CAW payment in 60 seconds.**
 
-PactBreak is a runnable demo where a RiskOps Agent buys 1 approved security-audit API/data package with Cobo Agentic Wallet authority. The agent compares vendor quotes, SLA, risk, wallet allowlist, and price, then requests CAW-bound payment authority. Existing live CAW proof: Pact `59f67ec0-8b3c-4d26-9403-0f70f083e3ec`, tx `0xae5e23759f56182d286a89ef55161e5e6af517e963e1f83a6e37d14f30c3e0ea`, denial `ADDRESS_NOT_WHITELISTED`.
+PactBreak is a runnable demo where a RiskOps Agent buys 1 approved security-audit API/data package with Cobo Agentic Wallet authority. The agent compares vendor quotes, SLA, risk, wallet allowlist, and price, then requests CAW-bound payment authority. Existing live CAW record: Pact `59f67ec0-8b3c-4d26-9403-0f70f083e3ec`, tx `0xae5e23759f56182d286a89ef55161e5e6af517e963e1f83a6e37d14f30c3e0ea`, denial `ADDRESS_NOT_WHITELISTED`.
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Open-2dd4bf?style=for-the-badge)](https://pactbreak-treasury-firewall.veithly.workers.dev)
-[![Proof Board](https://img.shields.io/badge/Proof_Board-Inspect-0f172a?style=for-the-badge)](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
-[![Cobo CAW](https://img.shields.io/badge/Cobo_CAW-Live_Proof-2563eb?style=for-the-badge)](#live-caw-proof)
+[![Run Record](https://img.shields.io/badge/Run_Record-Inspect-0f172a?style=for-the-badge)](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
+[![Cobo CAW](https://img.shields.io/badge/Cobo_CAW-Live_Record-2563eb?style=for-the-badge)](#live-caw-record)
 [![Demo Video](https://img.shields.io/badge/Demo_Video-2min-f97316?style=for-the-badge)](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-demo-zh-2min.mp4)
 
-**Quick links:** [Live app](https://pactbreak-treasury-firewall.veithly.workers.dev) · [Demo video](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-demo-zh-2min.mp4) · [Deck PDF](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-pitch-deck-zh-2min.pdf) · [Pitch deck video](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-pitch-deck-zh-2min.mp4) · [Architecture](./docs/ARCHITECTURE.md) · [Deployment](./docs/DEPLOYMENT.md) · [Proof board](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
+**Quick links:** [Live app](https://pactbreak-treasury-firewall.veithly.workers.dev) · [Demo video](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-demo-zh-2min.mp4) · [Deck PDF](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-pitch-deck-zh-2min.pdf) · [Pitch deck video](https://raw.githubusercontent.com/veithly/pactbreak-resource-procurement/main/submission-media/pactbreak-pitch-deck-zh-2min.mp4) · [Architecture](./docs/ARCHITECTURE.md) · [Deployment](./docs/DEPLOYMENT.md) · [Run record](https://pactbreak-treasury-firewall.veithly.workers.dev/app/proof)
 
 </div>
 
@@ -30,7 +30,7 @@ PactBreak turns that boundary into a product loop. The agent selects an approved
 | Can the agent buy a resource? | Yes, with too much authority | Only after human handling | **Yes, through CAW-bound authority** |
 | Can a judge change the order? | Usually hidden | Usually no | **Yes: mutate price or vendor wallet** |
 | Does enforcement happen before signature? | Often unclear | Human-only | **Yes: policy and CAW Pact scope** |
-| Is there durable proof? | Logs or screenshots | Approval row | **Pact ID, tx hash, denial, audit counts, quote trace** |
+| Is there a saved record? | Logs or screenshots | Approval row | **Pact ID, tx hash, denial, audit counts, quote trace** |
 
 ## Demo Path
 
@@ -44,18 +44,18 @@ PactBreak turns that boundary into a product loop. The agent selects an approved
     <td><b>2.</b> Review three vendor quotes. Only the approved vendor fits price, risk, SLA, and wallet allowlist.</td>
   </tr>
   <tr>
-    <td width="50%"><img src="./docs/screenshots/proof.png" alt="Proof board" /></td>
+    <td width="50%"><img src="./docs/screenshots/proof.png" alt="Run record board" /></td>
     <td width="50%"><img src="./docs/screenshots/mobile.png" alt="Mobile procurement path" /></td>
   </tr>
   <tr>
-    <td><b>3.</b> Attach existing live CAW proof, then mutate price or vendor address and inspect the block.</td>
+    <td><b>3.</b> Attach the existing live CAW record, then mutate price or vendor address and inspect the block.</td>
     <td><b>4.</b> The same first-run path works from a phone-sized viewport.</td>
   </tr>
 </table>
 
-## Live CAW Proof
+## Live CAW Record
 
-The prototype uses existing live CAW evidence as the payment and denial proof. It does not claim a new vendor settlement unless a fresh CAW run is executed with matching destination and amount.
+The prototype uses an existing live CAW run as the payment and denial record. It does not claim a new vendor settlement unless a fresh CAW run is executed with matching destination and amount.
 
 | Field | Value |
 | --- | --- |
@@ -65,7 +65,7 @@ The prototype uses existing live CAW evidence as the payment and denial proof. I
 | Denied code | `ADDRESS_NOT_WHITELISTED` |
 | Denied reason | `no_pact_transfer_allow_policy_matched` |
 | Audit counts | `allowed=19`, `denied=1` |
-| Evidence source | `live_caw` |
+| Source label | `live_caw` |
 
 Missing CAW credentials produce `configuration_blocked`. Pasted receipts are labeled as operator-attested imports.
 
@@ -99,31 +99,31 @@ Do not expose `AGENT_WALLET_API_KEY` or the Pact-scoped key to the browser.
 flowchart LR
   agent["RiskOps Agent selects quote"] --> policy["Policy checks price and vendor"]
   policy -->|approved| caw["Cobo Agentic Wallet Pact"]
-  caw --> tx["Allowed payment proof"]
+  caw --> tx["Allowed payment record"]
   policy -->|mutated| block["Blocked price or wallet change"]
-  tx --> proof["Proof board and run trace"]
+  tx --> proof["Record board and run trace"]
   block --> proof
 ```
 
 | Layer | Choice | Why |
 | --- | --- | --- |
-| Frontend | Next.js App Router, React, custom operational UI | Fast first-run path with desktop and mobile proof surfaces |
+| Frontend | Next.js App Router, React, custom operational UI | Fast first-run path with desktop and mobile record screens |
 | Wallet authority | `@cobo/agentic-wallet` | CAW is the signing and audit boundary, not a badge |
 | Policy engine | Deterministic TypeScript rules | Judges can predict why an order passed or failed |
-| Storage | Local JSON in dev, D1 target documented | Keeps hackathon proof inspectable while naming the production hardening step |
+| Storage | Local JSON in dev, D1 target documented | Keeps the run inspectable while naming the production hardening step |
 | Verification | Playwright, typecheck, build, public API smoke, visual QA | Proves the first-run procurement path and layout health |
 
 Full diagrams and boundary notes live in [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
 
 ## Cobo Track Fit
 
-| Cobo judging angle | PactBreak evidence |
+| Cobo judging angle | PactBreak record |
 | --- | --- |
 | Agentic Commerce | RiskOps Agent procures a security-audit data/API package. |
 | CAW criticality | CAW limits wallet authority by chain, token, destination, and amount. Removing it leaves only a local quote table. |
-| Funds flow completeness | Quote selection -> CAW-bound payment proof -> mutated order denial -> proof board. |
+| Funds flow completeness | Quote selection -> CAW payment record -> mutated order denial -> run record. |
 | Demo stability | Fresh visitor can run the hero path without login. |
-| Risk boundary | Existing live proof is labeled honestly; missing keys and imported receipts have separate states. |
+| Risk boundary | The existing live CAW run is labeled honestly; missing keys and imported receipts have separate states. |
 
 ## Safety Boundary
 
@@ -131,8 +131,8 @@ Full diagrams and boundary notes live in [docs/ARCHITECTURE.md](./docs/ARCHITECT
 - No private key is stored in this repo.
 - The demo uses SETH/testnet-style assets, not mainnet funds.
 - Unsafe edits are blocked before transfer execution.
-- Existing proof is reused for the prototype and labeled as `live_caw`.
-- Imported evidence stays labeled as imported.
+- The existing CAW run is reused for the prototype and labeled as `live_caw`.
+- Imported receipts stay labeled as imported.
 - The production hardening path is D1-backed run storage and team auth.
 
 ## Repository Layout
@@ -140,10 +140,10 @@ Full diagrams and boundary notes live in [docs/ARCHITECTURE.md](./docs/ARCHITECT
 ```text
 .
 ├── src/app/                 Next.js routes and API endpoints
-├── src/components/          Procurement console, proof board, pact console, policy lab
+├── src/components/          Procurement console, record board, pact console, policy lab
 ├── src/lib/                 CAW adapter, policy engine, run store, shared types
 ├── scripts/                 CAW drill helper
-├── tests/                   Playwright onboarding proof
+├── tests/                   Playwright onboarding checks
 ├── docs/                    Architecture, deployment, public screenshots
 └── public/                  Brand assets, favicon, and OG images
 ```
@@ -162,6 +162,6 @@ Hunter G4-G7 gates passed on `2026-06-10`: product slice, feature density, claim
 
 Live URL: <https://pactbreak-treasury-firewall.veithly.workers.dev>
 
-Current deployed version recorded in gate evidence: `d85d83b8-afe5-4485-8510-1c71981d192c`
+Current deployed version recorded in gate notes: `d85d83b8-afe5-4485-8510-1c71981d192c`
 
 See [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) for setup, secrets, deploy commands, and smoke checks.
